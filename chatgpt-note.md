@@ -1,4 +1,4 @@
-https://aimarketingplan.com/chatgpt-hacks/  
+[1] https://aimarketingplan.com/chatgpt-hacks/  
 Reverse Prompt Engineering  
 "[Insert some content or data in a format you would like to achieve]"
 
