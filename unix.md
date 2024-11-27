@@ -1,4 +1,4 @@
-#  To Clear PageCache only[https://www.geeksforgeeks.org/how-to-clear-ram-memory-cache-buffer-and-swap-space-on-linux/]
+#  [To Clear PageCache only](https://www.geeksforgeeks.org/how-to-clear-ram-memory-cache-buffer-and-swap-space-on-linux/)
 ```shell
 sudo sh -c 'echo 1 >  /proc/sys/vm/drop_caches'
 ```
