@@ -1,6 +1,8 @@
 ```shell
 ~❯ lsof -i :3030
 ~❯ kill 111098
+
+lsof -ti:3030 | xargs kill -9 
 ```
 
 ###  [To Clear PageCache only](https://www.geeksforgeeks.org/how-to-clear-ram-memory-cache-buffer-and-swap-space-on-linux/)
