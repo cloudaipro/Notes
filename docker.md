@@ -1,4 +1,7 @@
 * executing sh
+```sh
+docker exec -it countgdpp-server /bin/bash
+```
 ``` sh
 docker run -it countgdapp-server-gpu /bin/bash
 ```
