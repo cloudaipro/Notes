@@ -5,6 +5,12 @@ docker exec -it countgdpp-server /bin/bash
 ``` sh
 docker run -it countgdapp-server-gpu /bin/bash
 ```
+
+* copy file
+```sh
+docker cp countgd_logging.py countgdpp-server:/app/countgd_logging.py
+```
+
 This is a **very common Docker issue**, especially when running ML / inference workloads (model downloads, build caches, large layers). Docker is conservative about deleting things, so storage grows fast unless you clean it intentionally.
 
 Below is a **safe → aggressive cleanup ladder**, plus **ML-specific tips** for inference servers.
