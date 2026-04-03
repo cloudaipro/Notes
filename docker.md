@@ -1,3 +1,51 @@
+## The Problem 
+```
+originService=http://localhost:8000
+dial tcp [::1]:8000: connect: connection refused
+```
+Cloudflared inside the Docker container tries to connect to localhost:8000, but that only points to itself. It needs to connect to the host machine where your app is running.
+
+### Solution 1: Use Host IP Address (Recommended)
+1. Get your server's IP address
+```bash
+hostname -I
+# or
+ip addr show | grep "inet "
+```
+2. Update the tunnel route in the dashboard 
+    1. Navigate to your tunnel settings: 
+        * Tunnel: CCS-AI-INFER-01
+    2. Go to the "Published application routes" tab
+    3. Edit the route and change the service URL from:
+        * http://localhost:8000
+        * To:
+        * http://YOUR_SERVER_IP:8000
+Replace YOUR_SERVER_IP with your actual server IP address.
+
+### Solution 2: Use Docker Network (Alternative)
+If you prefer not to expose the IP, you can connect cloudflared to the same Docker network as your app:
+
+```bash
+# Stop cloudflared
+docker stop cloudflared
+# Connect to the same network as your app
+docker network connect bridge cloudflared
+# Start cloudflared again
+docker start cloudflared
+# Now update the tunnel route to use the container name
+# In dashboard, change originService to: http://countgdpp-server:8000
+```
+
+### Verify the Fix
+After updating the route:
+
+1. Check the logs again: docker logs -f cloudflared
+2. Access your app: https://aicounter.connectionscomputer.com/health
+3. Check the tunnel diagnostics: CCS-AI-INFER-01 logs
+The logs should show successful connections instead of "connection refused" errors.
+
+----------------------------------------------------------
+
 * executing sh
 ```sh
 docker exec -it countgdpp-server /bin/bash
